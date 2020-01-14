@@ -15,7 +15,7 @@ public String say_it() {
 
 
 public String say_it_loud() {
-	return "Hello World";
+	return "HELLO WORLD";
 }
   
   // rest of your code to implement the various operations
