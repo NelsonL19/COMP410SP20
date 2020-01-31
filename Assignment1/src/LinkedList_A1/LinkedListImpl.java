@@ -33,22 +33,37 @@ public class LinkedListImpl implements LIST_Interface {
 
 	
 	public boolean insert(double elt, int index) {
-
-		if (headCell == null) {
-			headCell = new Node(elt);
-			
-			headCell.prev = headCell;
+		
+		if (index > size() || index < 0) {
+			return false; 
+		}
+		
+		if (counter == 0) {
+			Node toAdd = new Node(elt);
+			headCell = toAdd;
+			lastCell = toAdd;
 			headCell.next = lastCell;
-			
+			lastCell.prev = headCell;
 			
 			
 			counter++;
 			return true;
 		}
 		
+		Node toAdd = new Node(elt);
+		Node toFind = headCell.prev;
+		for (int i = 0; i < index; i++) {
+			toFind = toFind.next;
+		}
+		Node next = toFind.next;
 		
-		
-		return false;
+		toFind.next = toAdd;
+		toAdd.prev = toFind;
+		toAdd.next = next;
+		next.prev = toAdd;
+				
+		counter++;
+		return true;
 	}
 
 	@Override
@@ -57,9 +72,29 @@ public class LinkedListImpl implements LIST_Interface {
 		return false;
 	}
 
-	@Override
+	
 	public boolean remove(int index) {
-		// TODO Auto-generated method stub
+		
+		if (index > size() || index < 0) {
+			return false; 
+		}
+		
+		if (size() == 1) {
+			clear();
+			return true;
+		}
+		
+		Node toFind = headCell.prev;
+		for (int i = 0; i < index; i++) {
+			toFind = toFind.next;
+		}
+		Node next = toFind.next;
+		
+		
+		
+		
+		
+		counter--;
 		return false;
 	}
 
@@ -70,12 +105,12 @@ public class LinkedListImpl implements LIST_Interface {
 			return Double.NaN;
 		}
 		
-		if (index < 0 || index > counter) {
+		if (index < 0 || index > size()) {
 			return Double.NaN;
 		}
 		
 		Node toGet = headCell;
-		for (int i = 0; i < counter; i++) {
+		for (int i = 0; i < index; i++) {
 			toGet = toGet.next;
 		}
 		
@@ -99,7 +134,8 @@ public class LinkedListImpl implements LIST_Interface {
 	
 	public void clear() {
 		headCell = null;
-		lastCell = null;
-		counter = 0;			
+		lastCell= null;
+		counter = 0;
+		System.gc();
 	}
 }
