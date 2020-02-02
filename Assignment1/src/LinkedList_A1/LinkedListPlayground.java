@@ -10,8 +10,67 @@ public class LinkedListPlayground {
 		 */
 		// test1();
 		//test2();
-		test3();
+		//test3();
 		//test4();
+		//test5();
+		//test6();
+		//test7();
+		test8();
+		
+	}
+
+	private static void test8() {
+		LinkedListImpl L= new LinkedListImpl();
+		System.out.println("Insert: " + L.insert(3,0));
+		System.out.println("Insert: " + L.insert(5,1));
+		System.out.println("Insert: " + L.insert(6,2));
+		System.out.println("Insert: " + L.insert(4,1));
+		System.out.println("Remove: " + L.remove(3));
+		System.out.println("3 < 4 < 5");
+		printList(L);
+		
+		
+//		LinkedListImpl A= new LinkedListImpl();
+//		System.out.println("Insert: " + A.insert(3,0));
+//		System.out.println("Insert: " + A.insert(5,1));
+//		System.out.println("Insert: " + A.insert(6,2));
+//		System.out.println("Insert: " + A.insert(4,1));
+//		System.out.println("Remove: " + A.remove(0));
+//		System.out.println("4 > 5 > 6");
+//		printList(A);
+
+
+	}
+
+	private static void test7() {
+		LinkedListImpl L= new LinkedListImpl();
+		System.out.println("Insert: " + L.insert(3,0));
+		L.clear();
+		System.out.println("Cleared");
+		System.out.println("Insert: " + L.insert(5,0));
+		System.out.println("Insert: " + L.insert(6,1));
+		System.out.println("Insert: " + L.insert(4,0));
+		printList(L);
+
+		
+	}
+
+	private static void test6() {
+		LinkedListImpl L= new LinkedListImpl();
+		System.out.println("Insert: " + L.insert(3,0));
+		System.out.println("Insert: " + L.insert(5,1));
+		System.out.println("Insert: " + L.insert(6,2));
+		System.out.println("Insert: " + L.insert(4,1));
+		printList(L);
+
+	}
+
+	private static void test5() {
+		LinkedListImpl L= new LinkedListImpl();
+		System.out.println("Insert: " + L.insert(3,0));
+		System.out.println("Insert: " + L.insert(5,1));
+		System.out.println("Got: " + L.get(0));
+
 	}
 
 	private static void test4() {
@@ -22,9 +81,14 @@ public class LinkedListPlayground {
 		System.out.println("Cleared");
 		System.out.println("Size: " + L.size());
 		System.out.println("Insert: " + L.insert(1,0));
+		System.out.println("Insert: " + L.insert(4,1));
+		System.out.println("Insert: " + L.insert(6,2));
+		System.out.println("Insert: " + L.insert(10,2));
+
+
 		System.out.println("Is Empty: " + L.isEmpty());
 		System.out.println("Size: " + L.size());
-		System.out.println("Remove: " + L.remove(0));
+		System.out.println("Remove: " + L.remove(1));
 		printList(L);
 		System.out.println("Is Empty: " + L.isEmpty());
 	}

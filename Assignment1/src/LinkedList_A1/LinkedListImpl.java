@@ -44,8 +44,6 @@ public class LinkedListImpl implements LIST_Interface {
 			lastCell = toAdd;
 			headCell.next = lastCell;
 			lastCell.prev = headCell;
-			
-			
 			counter++;
 			return true;
 		}
@@ -61,41 +59,78 @@ public class LinkedListImpl implements LIST_Interface {
 		toAdd.prev = toFind;
 		toAdd.next = next;
 		next.prev = toAdd;
+		
+		if (index == size()) {
+			lastCell = toAdd;
+		}
+		
+		if (index == 0) {
+			headCell = toAdd;
+		}
 				
 		counter++;
 		return true;
 	}
 
-	@Override
+	
 	public boolean insort(double elt) {
-		// TODO Auto-generated method stub
+		
+//		Node toAdd = new Node(elt);
+//		Node toFind = headCell.prev;
+//		//for (int i = 0; i < index; i++) {
+//		//	toFind = toFind.next;
+//		//}
+//		
+//		//change above to a while loop
+//		
+//		
+//		
+//		Node next = toFind.next;
+		
+		
 		return false;
 	}
 
 	
 	public boolean remove(int index) {
 		
-		if (index > size() || index < 0) {
-			return false; 
+		if (index > size() || index < 0 || size() == 0) {
+			return false;
 		}
-		
-		if (size() == 1) {
-			clear();
+
+		if (index ==  0 ) {
+			
+			lastCell.next = headCell.next;
+			headCell.next.prev = lastCell;
+			headCell = headCell.next;
+			counter--;
 			return true;
 		}
 		
-		Node toFind = headCell.prev;
+		
+		
+		Node toFind = headCell;
 		for (int i = 0; i < index; i++) {
-			toFind = toFind.next;
+			toFind = toFind.next;	
 		}
-		Node next = toFind.next;
+
 		
 		
+		Node pre = toFind.prev;
+		Node nex = toFind.next;
+
+		pre.next = toFind.next;
+		nex.prev = toFind.prev;
+		
+		if (index == size()-1) {
+			lastCell = lastCell.prev;
+			}
+			
 		
 		
 		
 		counter--;
-		return false;
+		return true;
 	}
 
 	
@@ -136,6 +171,5 @@ public class LinkedListImpl implements LIST_Interface {
 		headCell = null;
 		lastCell= null;
 		counter = 0;
-		System.gc();
 	}
 }
