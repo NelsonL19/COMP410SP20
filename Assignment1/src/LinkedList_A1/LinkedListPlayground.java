@@ -15,7 +15,61 @@ public class LinkedListPlayground {
 		//test5();
 		//test6();
 		//test7();
-		test8();
+		//test8();
+		//test9();
+		//test10();
+		test11();
+		
+		
+		
+	}
+
+	private static void test11() {
+		LinkedListImpl L= new LinkedListImpl();	
+		System.out.println("Insert: " + L.insert(4,0));
+		System.out.println("Insert: " + L.insert(8,1));
+		System.out.println("Remove: " + L.remove(0));
+		printList(L);
+	}
+
+	private static void test10() {
+		LinkedListImpl L= new LinkedListImpl();
+		System.out.println("Insort: " + L.insort(14));
+		System.out.println("Insort: " + L.insort(21));
+		System.out.println("Insert: " + L.insert(10,1));
+		System.out.println("Remove: " + L.remove(2));
+		System.out.println("Insort: " + L.insort(8));
+		System.out.println("Insert: " + L.insert(20,3));
+		System.out.println("Insort: " + L.insort(17));
+		System.out.println("Insort: " + L.insort(14));
+		System.out.println("8,14,10,14,17,20");
+		printList(L);
+		
+		
+	}
+
+	private static void test9() {
+		//Insort Test 0: insort(14),insort(21),insort(5),insort(17),insort(67) --> 5,14,17,21,67
+		//Insort Test 1: insort(10),insort(15),insort(15),insort(20),insort(15),insort(10) --> 10,10,15,15,15,20
+		LinkedListImpl L= new LinkedListImpl();
+		System.out.println("Insort: " + L.insort(14));
+		System.out.println("Insort: " + L.insort(21));
+		System.out.println("Insort: " + L.insort(5));
+		System.out.println("Insort: " + L.insort(17));
+		System.out.println("Insort: " + L.insort(67));
+		System.out.println("5,14,17,21,67");
+		printList(L);
+		
+		
+		LinkedListImpl A= new LinkedListImpl();
+		System.out.println("Insort: " + A.insort(10));
+		System.out.println("Insort: " + A.insort(15));
+		System.out.println("Insort: " + A.insort(15));
+		System.out.println("Insort: " + A.insort(20));
+		System.out.println("Insort: " + A.insort(15));
+		System.out.println("Insort: " + A.insort(10));
+		System.out.println("10,10,15,15,15,20");
+		printList(A);
 		
 	}
 

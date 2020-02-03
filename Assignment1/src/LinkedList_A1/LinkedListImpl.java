@@ -10,7 +10,7 @@ public class LinkedListImpl implements LIST_Interface {
 	Node headCell; //this will be the entry point to your linked list (the head)
 	Node lastCell; // this is the Node at the end of the list... the starting place
 	// if you wanted to traverse the list backwards
-	
+
 	int counter = 0;
 
 
@@ -31,13 +31,13 @@ public class LinkedListImpl implements LIST_Interface {
 		return lastCell;
 	}
 
-	
+
 	public boolean insert(double elt, int index) {
-		
+
 		if (index > size() || index < 0) {
 			return false; 
 		}
-		
+
 		if (counter == 0) {
 			Node toAdd = new Node(elt);
 			headCell = toAdd;
@@ -47,108 +47,103 @@ public class LinkedListImpl implements LIST_Interface {
 			counter++;
 			return true;
 		}
-		
+
 		Node toAdd = new Node(elt);
+
 		Node toFind = headCell.prev;
+		//Node toFind = headCell;
 		for (int i = 0; i < index; i++) {
 			toFind = toFind.next;
 		}
+
+
 		Node next = toFind.next;
-		
+
 		toFind.next = toAdd;
 		toAdd.prev = toFind;
 		toAdd.next = next;
 		next.prev = toAdd;
-		
+
 		if (index == size()) {
 			lastCell = toAdd;
 		}
-		
+
 		if (index == 0) {
 			headCell = toAdd;
 		}
-				
+
 		counter++;
 		return true;
 	}
 
-	
+
 	public boolean insort(double elt) {
-		
-//		Node toAdd = new Node(elt);
-//		Node toFind = headCell.prev;
-//		//for (int i = 0; i < index; i++) {
-//		//	toFind = toFind.next;
-//		//}
-//		
-//		//change above to a while loop
-//		
-//		
-//		
-//		Node next = toFind.next;
-		
-		
-		return false;
+		if (counter == 0) {
+			return (insert(elt, 0));
+		}
+		Node toAdd = headCell;
+		int count = 0;
+		for (int i = 0; i < size(); i++) {
+			if (elt >= toAdd.data) {
+				toAdd = toAdd.next;
+				count++;
+			}
+		}
+
+		return insert(elt, count);
 	}
 
-	
+
 	public boolean remove(int index) {
-		
+
 		if (index > size() || index < 0 || size() == 0) {
 			return false;
 		}
 
-		if (index ==  0 ) {
-			
+		if (index ==  0) {
 			lastCell.next = headCell.next;
 			headCell.next.prev = lastCell;
 			headCell = headCell.next;
 			counter--;
 			return true;
 		}
-		
-		
-		
 		Node toFind = headCell;
 		for (int i = 0; i < index; i++) {
 			toFind = toFind.next;	
 		}
 
-		
-		
 		Node pre = toFind.prev;
 		Node nex = toFind.next;
-
 		pre.next = toFind.next;
 		nex.prev = toFind.prev;
-		
+
 		if (index == size()-1) {
 			lastCell = lastCell.prev;
-			}
-			
-		
-		
-		
+		}
+
+
+
+
 		counter--;
 		return true;
 	}
 
-	
+
 	public double get(int index) {
-		
+
 		if (headCell == null) {
 			return Double.NaN;
 		}
-		
+
 		if (index < 0 || index > size()) {
 			return Double.NaN;
 		}
-		
+
 		Node toGet = headCell;
 		for (int i = 0; i < index; i++) {
 			toGet = toGet.next;
 		}
-		
+
 		return toGet.getData();
 	}
 
@@ -166,10 +161,20 @@ public class LinkedListImpl implements LIST_Interface {
 		}
 	}
 
-	
+
 	public void clear() {
 		headCell = null;
 		lastCell= null;
 		counter = 0;
 	}
+
+	//	public Node getNode(int index, Node start) {
+	//
+	//		Node toFind = headCell;
+	//		for (int i = 0; i < index; i++) {
+	//			toFind = toFind.next;	
+	//		}
+	//
+	//		return toFind;
+	//	}
 }
