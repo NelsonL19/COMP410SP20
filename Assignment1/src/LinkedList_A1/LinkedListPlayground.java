@@ -8,20 +8,33 @@ public class LinkedListPlayground {
      correctness. We've graciously also provided you a bit of extra test data for debugging.
      It doesn't matter what you have in here. We will not grade it. This is for your use in testing your implementation.
 		 */
-		// test1();
-		//test2();
-		//test3();
+		 test1();
+		test2();
+		test3();
 		//test4();
 		//test5();
 		//test6();
-		//test7();
+		//	test7();
 		//test8();
 		//test9();
 		//test10();
-		test11();
-		
-		
-		
+		//test11();
+	//	test12();
+
+
+
+	}
+
+	private static void test12() {
+		LinkedListImpl L= new LinkedListImpl();
+		System.out.println("Insort: " + L.insort(14));
+		System.out.println("Insort: " + L.insort(21));
+		System.out.println("Insort: " + L.insort(0));
+		System.out.println("Insort: " + L.insort(1));
+		System.out.println("Insort: " + L.insort(5));
+		System.out.println("Insort: " + L.insort(9.9));
+
+		printList(L);
 	}
 
 	private static void test11() {
@@ -44,8 +57,8 @@ public class LinkedListPlayground {
 		System.out.println("Insort: " + L.insort(14));
 		System.out.println("8,14,10,14,17,20");
 		printList(L);
-		
-		
+
+
 	}
 
 	private static void test9() {
@@ -59,8 +72,8 @@ public class LinkedListPlayground {
 		System.out.println("Insort: " + L.insort(67));
 		System.out.println("5,14,17,21,67");
 		printList(L);
-		
-		
+
+
 		LinkedListImpl A= new LinkedListImpl();
 		System.out.println("Insort: " + A.insort(10));
 		System.out.println("Insort: " + A.insort(15));
@@ -70,7 +83,7 @@ public class LinkedListPlayground {
 		System.out.println("Insort: " + A.insort(10));
 		System.out.println("10,10,15,15,15,20");
 		printList(A);
-		
+
 	}
 
 	private static void test8() {
@@ -82,16 +95,16 @@ public class LinkedListPlayground {
 		System.out.println("Remove: " + L.remove(3));
 		System.out.println("3 < 4 < 5");
 		printList(L);
-		
-		
-//		LinkedListImpl A= new LinkedListImpl();
-//		System.out.println("Insert: " + A.insert(3,0));
-//		System.out.println("Insert: " + A.insert(5,1));
-//		System.out.println("Insert: " + A.insert(6,2));
-//		System.out.println("Insert: " + A.insert(4,1));
-//		System.out.println("Remove: " + A.remove(0));
-//		System.out.println("4 > 5 > 6");
-//		printList(A);
+
+
+		LinkedListImpl A= new LinkedListImpl();
+		System.out.println("Insert: " + A.insert(3,0));
+		System.out.println("Insert: " + A.insert(5,1));
+		System.out.println("Insert: " + A.insert(6,2));
+		System.out.println("Insert: " + A.insert(4,1));
+		System.out.println("Remove: " + A.remove(2));
+		System.out.println("3 > 4 > 6");
+		printList(A);
 
 
 	}
@@ -106,7 +119,7 @@ public class LinkedListPlayground {
 		System.out.println("Insert: " + L.insert(4,0));
 		printList(L);
 
-		
+
 	}
 
 	private static void test6() {
@@ -199,6 +212,7 @@ public class LinkedListPlayground {
 		L.remove(0);
 		System.out.println(L.size());
 		printList(L);
+		System.out.println("Test 1 Done");
 	}
 
 	public static void test2(){

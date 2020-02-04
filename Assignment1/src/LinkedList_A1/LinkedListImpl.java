@@ -42,35 +42,44 @@ public class LinkedListImpl implements LIST_Interface {
 			Node toAdd = new Node(elt);
 			headCell = toAdd;
 			lastCell = toAdd;
-			headCell.next = lastCell;
-			lastCell.prev = headCell;
+//			headCell.next = lastCell;
+//			lastCell.prev = headCell;
 			counter++;
 			return true;
 		}
 
 		Node toAdd = new Node(elt);
-
-		Node toFind = headCell.prev;
-		//Node toFind = headCell;
-		for (int i = 0; i < index; i++) {
+		//Node toFind = headCell.prev;
+		Node toFind = headCell;
+		for (int i = 0; i < index-1; i++) {
 			toFind = toFind.next;
+		}
+
+		if (index == 0) {
+			toFind.prev = toAdd;
+			toAdd.next = toFind;
+			headCell = toAdd;
+			counter++;
+			return true;
 		}
 
 
 		Node next = toFind.next;
+		if (next != null) {
+			toFind.next = toAdd;
+			toAdd.prev = toFind;
+			toAdd.next = next;
+			next.prev = toAdd;
 
-		toFind.next = toAdd;
-		toAdd.prev = toFind;
-		toAdd.next = next;
-		next.prev = toAdd;
-
+		} else {
+			toFind.next = toAdd;
+			toAdd.prev = toFind;
+		}
 		if (index == size()) {
 			lastCell = toAdd;
 		}
 
-		if (index == 0) {
-			headCell = toAdd;
-		}
+
 
 		counter++;
 		return true;
@@ -101,8 +110,8 @@ public class LinkedListImpl implements LIST_Interface {
 		}
 
 		if (index ==  0) {
-			lastCell.next = headCell.next;
-			headCell.next.prev = lastCell;
+			//lastCell.next = headCell.next;
+			//headCell.next.prev = lastCell;
 			headCell = headCell.next;
 			counter--;
 			return true;
@@ -111,18 +120,23 @@ public class LinkedListImpl implements LIST_Interface {
 		for (int i = 0; i < index; i++) {
 			toFind = toFind.next;	
 		}
-
-		Node pre = toFind.prev;
-		Node nex = toFind.next;
-		pre.next = toFind.next;
-		nex.prev = toFind.prev;
-
-		if (index == size()-1) {
+		
+		if (toFind == lastCell) {
 			lastCell = lastCell.prev;
+			lastCell.next = null;
+			counter--;
+			return true;
 		}
 
+		Node preN = toFind.prev;
+		Node nexN = toFind.next;
+		preN.next = toFind.next;
+		nexN.prev = toFind.prev;
 
-
+		if (index == size()) {
+			lastCell = lastCell.prev;
+			lastCell.next = null;
+		}
 
 		counter--;
 		return true;
