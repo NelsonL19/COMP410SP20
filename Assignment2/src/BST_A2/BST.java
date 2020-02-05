@@ -13,10 +13,8 @@ public class BST implements BST_Interface {
 public boolean insert(String s) {
 	// TODO Auto-generated method stub
 	return false;
+//
 
-
-
-	
 }
 
 @Override
