@@ -11,15 +11,15 @@ public class LinkedListPlayground {
 		 test1();
 		test2();
 		test3();
-		//test4();
-		//test5();
-		//test6();
-		//	test7();
-		//test8();
-		//test9();
-		//test10();
-		//test11();
-	//	test12();
+		test4();
+		test5();
+		test6();
+			test7();
+		test8();
+		test9();
+		test10();
+		test11();
+	test12();
 
 
 
@@ -33,6 +33,11 @@ public class LinkedListPlayground {
 		System.out.println("Insort: " + L.insort(1));
 		System.out.println("Insort: " + L.insort(5));
 		System.out.println("Insort: " + L.insort(9.9));
+		System.out.println("Remove: " + L.remove(0));
+		System.out.println("Remove: " + L.remove(0));
+		System.out.println("Remove: " + L.remove(0));
+
+		
 
 		printList(L);
 	}

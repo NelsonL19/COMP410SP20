@@ -6,10 +6,10 @@
 */
 
 package LinkedList_A1;
-import gradingTools.comp410s20.assignment1.testcases.Assignment1Suite;
+//import gradingTools.comp410s20.assignment1.testcases.Assignment1Suite;
 
 public class RunTests {
   public static void main(String[] args){
-    Assignment1Suite.main(args);
+ //   Assignment1Suite.main(args);
   }
 }
