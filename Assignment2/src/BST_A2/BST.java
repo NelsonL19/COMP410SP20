@@ -9,17 +9,15 @@ public class BST implements BST_Interface {
   //used for testing, please leave as is
   public BST_Node getRoot(){ return root; }
 
-@Override
 public boolean insert(String s) {
-	// TODO Auto-generated method stub
-	return false;
-//
 
+	size++;
+	return false;
 }
 
-@Override
 public boolean remove(String s) {
-	// TODO Auto-generated method stub
+
+	size--;
 	return false;
 }
 
@@ -49,8 +47,7 @@ public boolean contains(String s) {
 
 @Override
 public int size() {
-	// TODO Auto-generated method stub
-	return 0;
+	return size;
 }
 
 @Override
