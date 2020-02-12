@@ -28,7 +28,9 @@ public class BST_Playground {
    // you may wish to print not only the node value, and indicators of what
    // nodes are the left and right subtree roots,
    // but also which node is the parent of the current node
- 
+    System.out.println("Test");
+    BST B = new BST();
+    B.insert("whomst");
   }
 
   static void printLevelOrder(BST tree){ 

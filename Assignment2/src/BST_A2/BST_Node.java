@@ -18,11 +18,72 @@ public class BST_Node {
   // --- end used for testing -------------------------------------------
   
   // --------------------------------------------------------------------
-  // you may add any other methods you want to get the job done
+
+  public boolean insertNode(String s, BST_Node root) {
+
+    if (s == null || root == null) {
+      return false;
+    }
+
+    if (s.compareTo(root.data) > 0) {
+      return root.left.insertNode(s, this);
+    }
+
+    if (s.compareTo(root.data) < 0) {
+      return root.right.insertNode(s, this);
+    }
+
+    if (left == null && right == null) {
+      return true;
+    }
+
+
+    return false;
+  }
+
+  public boolean removeNode(String s, BST_Node root) {
+
+    if (s == null || root == null) {
+      return false;
+    }
+
+    if (s.compareTo(root.data) > 0) {
+      return root.left.removeNode(s, this);
+    }
+
+    if (s.compareTo(root.data) < 0) {
+      return root.right.removeNode(s, this);
+    }
+
+
+
+
+    return false;
+  }
+
+  public BST_Node findMin() {
+    return null;
+  }
+
+  public BST_Node findMax() {
+    return null;
+  }
+
+  public boolean contains(String s, BST_Node root) {
+    return false;
+  }
+
+  public int getHeight(BST_Node root) {
+    return 0;
+  }
+
   // --------------------------------------------------------------------
   
   public String toString(){
     return "Data: "+this.data+", Left: "+((this.left!=null)?left.data:"null")
             +",Right: "+((this.right!=null)?right.data:"null");
   }
+
+
+
 }

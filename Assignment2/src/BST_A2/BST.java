@@ -1,5 +1,7 @@
 package BST_A2;
 
+import javax.xml.crypto.Data;
+
 public class BST implements BST_Interface {
   public BST_Node root;
   int size;
@@ -11,49 +13,89 @@ public class BST implements BST_Interface {
 
 public boolean insert(String s) {
 
-	size++;
+	if (s == null) {
+		return false;
+	}
+
+	if (size == 0 && root == null) {
+		root = new BST_Node(s);
+		size++;
+		return true;
+	}
+
+	if (root.insertNode(s, root)) {
+		size++;
+		return true;
+	}
 	return false;
 }
 
 public boolean remove(String s) {
+	if (s == null || size == 0) {
+		return false;
+	}
 
-	size--;
+	if (size == 1) {
+		root = null;
+		size--;
+		return true;
+	}
+
+	if (root.removeNode(s, root)) {
+		size--;
+		return true;
+	}
 	return false;
 }
 
-@Override
+
 public String findMin() {
-	// TODO Auto-generated method stub
-	return null;
+
+	if (size == 0) {
+		return null;
+	}
+
+	return root.left.findMin().data;
 }
 
-@Override
 public String findMax() {
-	// TODO Auto-generated method stub
-	return null;
+
+	if (size == 0) {
+		return null;
+	}
+
+	return root.right.findMax().data;
 }
 
-@Override
+
 public boolean empty() {
-	// TODO Auto-generated method stub
-	return false;
+	return (size == 0);
 }
 
-@Override
+
 public boolean contains(String s) {
-	// TODO Auto-generated method stub
-	return false;
+
+	if (s == null) {
+		return false;
+	}
+
+	return root.contains(s, root);
 }
 
-@Override
+
 public int size() {
 	return size;
 }
 
-@Override
+
 public int height() {
-	// TODO Auto-generated method stub
-	return 0;
+
+	if (size == 0 || root == null) {
+		return -1;
+	}
+
+
+	return root.getHeight(root);
 }
 
   //--------------------------------------------------
