@@ -25,18 +25,20 @@ public class BST_Node {
       return false;
     }
 
-    if (s.compareTo(root.data) > 0) {
+    if (s.compareTo(root.data) > 0) { //left
+
+      if (left == null) {
+        left = new BST_Node(s);
+            }
       return root.left.insertNode(s, this);
     }
 
-    if (s.compareTo(root.data) < 0) {
+    if (s.compareTo(root.data) < 0) { //right
+      if (right == null) {
+        right = new BST_Node(s);
+            }
       return root.right.insertNode(s, this);
-    }
-
-    if (left == null && right == null) {
-      return true;
-    }
-
+          }
 
     return false;
   }

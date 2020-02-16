@@ -30,6 +30,9 @@ public class BST_Playground {
    // but also which node is the parent of the current node
     System.out.println("Test");
     BST B = new BST();
+    B.insert("Hello");
+    printLevelOrder(B);
+
     B.insert("whomst");
   }
 
