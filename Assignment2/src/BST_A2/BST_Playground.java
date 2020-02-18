@@ -28,20 +28,50 @@ public class BST_Playground {
 		// you may wish to print not only the node value, and indicators of what
 		// nodes are the left and right subtree roots,
 		// but also which node is the parent of the current node
-		BST B = new BST();
-		B.insert("Able");
-		B.remove("Able");
-		B.remove("Aaa");
-		B.insert("Bravo");
-	
-		B.insert("Aaa");
 
-		B.insert("Charlie");
-	//	System.out.println(B.height());
-		printLevelOrder(B);
-		
-		
-		//printGivenLevel(B.root, 1);
+
+		//		BST B = new BST();
+		//		B.insert("Able");
+		//		System.out.println(B.remove("Able"));
+		//		System.out.println(B.remove("Aaa"));
+		//		B.insert("Bravo");
+		//	
+		//		B.insert("Aaa");
+		//
+		//		B.insert("Charlie");
+		//		printLevelOrder(B);
+		//		
+
+		BST A = new BST();
+		System.out.println("Insert: " + A.insert("KrisJordan"));
+		System.out.println("Insert: " + A.insert("Stotts"));
+		System.out.println("Insert: " + A.insert("Munsell"));
+		System.out.println("Insert: " + A.insert("Snoeyink"));
+		System.out.println("Insert: " + A.insert("KMP"));
+
+		printLevelOrder(A);
+
+		//KMP
+		//KRISJORDAN
+		//Munsell
+		//Snoeyoink
+		//Stotts
+
+		System.out.println("Height: " + A.height());
+		System.out.println("Size: " + A.size);
+
+		System.out.println("Remove: " + A.remove("KrisJordan"));
+		printLevelOrder(A);
+
+		//KMP
+		//Munsell
+		//Snoeyoink
+		//Stotts
+
+
+
+
+
 
 	}
 

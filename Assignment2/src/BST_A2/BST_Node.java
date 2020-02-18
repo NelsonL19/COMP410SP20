@@ -52,43 +52,21 @@ public class BST_Node {
 			return false;
 		}
 
-		//		if (s.compareTo(root.data) == 0) {
-		//			return root.removeNode(s, this);
-		//		}
-		//
-		//		if (s.compareTo(root.data) > 0) {
-		//			return root.left.removeNode(s, this);
-		//		}
-		//
-		//		if (s.compareTo(root.data) < 0) {
-		//			return root.right.removeNode(s, this);
-		//		}
-
-		if (s == null || root == null) {
-			return false;
-		}
-		
-		//Inside Tree
 
 
-		if (root.getData().compareTo(s) == 0) {
-
-			//No Children
-
-			if (root.right == null && root.left == null) {
-				if (right == root) {
-					right = null;
-				} else {
+		if (root.data.compareTo(s) == 0) {
+			
+			if (root.left == null && root.right == null) {
+				if (left == root) {
 					left = null;
+				} else {
+					right = null;
 				}
 				return true;
 			}
 
-
-			//1 Child Left
-
 			if (root.left != null && root.right == null) {
-				if (left == root) {
+				if (right != root) {
 					left = root.left;
 				} else {
 					right = root.left;
@@ -96,53 +74,37 @@ public class BST_Node {
 				return true;
 			}
 
-
 			if (root.left == null && root.right != null) {
 
-				BST_Node replace = root.right.findMin();
-
-
-				root.data = replace.data;
-				root.removeNode(replace.data, root.right);
-				return true;
-
-
-
+				BST_Node rightSide = root.right.findMin();
+				root.data = rightSide.data;
+				return root.removeNode(rightSide.data, root.right);
+				
 			}
-
-			//2 Children left
 
 			if (root.left != null && root.right != null) {
 
-				BST_Node replace = root.right.findMin();
-
-
-				root.data = replace.data;
-				root.removeNode(replace.data, root.right);
-				return true;
+				BST_Node rightSide = root.right.findMin();
+				root.data = rightSide.data;
+				return root.removeNode(rightSide.data, root.right);
 			}
 
 
 		}
 
 
-		if (root.getData().compareTo(s) < 0) {
-			if (root.removeNode(s, root.right)) {
-				return true;
-			}
+		if (root.data.compareTo(s) < 0) {
+			return root.removeNode(s, root.right);
+			
 		}
 
-		if (root.getData().compareTo(s) > 0) {
-			if (root.removeNode(s, root.left)) {
-				return true;
-			}
-		} 
+		if (root.data.compareTo(s) > 0) {
+			return root.removeNode(s, root.left);
+			
+		}
 
 
 		return false;
-
-
-		//return false;
 	}
 
 	public BST_Node findMin() {
@@ -162,12 +124,12 @@ public class BST_Node {
 		return this.right.findMax();
 	}
 
-		public boolean contains(String s, BST_Node root) {
+	public boolean contains(String s, BST_Node root) {
 
 		if (s == null || root == null) {
 			return false;
 		}
-			
+
 		if (root.data.compareTo(s) == 0) {
 			return true;
 		}
