@@ -66,7 +66,7 @@ public class BST_Node {
 			}
 
 			if (root.left != null && root.right == null) {
-				if (right != root) {
+				if (left == root) {
 					left = root.left;
 				} else {
 					right = root.left;
@@ -92,16 +92,15 @@ public class BST_Node {
 
 		}
 
+		if (root.data.compareTo(s) > 0) {
+			return root.removeNode(s, root.left);
+		}
 
 		if (root.data.compareTo(s) < 0) {
 			return root.removeNode(s, root.right);
-			
 		}
 
-		if (root.data.compareTo(s) > 0) {
-			return root.removeNode(s, root.left);
-			
-		}
+		
 
 
 		return false;
@@ -109,19 +108,19 @@ public class BST_Node {
 
 	public BST_Node findMin() {
 
-		if (this.left == null) {
+		if (left == null) {
 			return this;
 		} 
 
-		return this.left.findMin();
+		return left.findMin();
 	}
 
 	public BST_Node findMax() {
-		if (this.right == null) {
+		if (right == null) {
 			return this;
 		} 
 
-		return this.right.findMax();
+		return right.findMax();
 	}
 
 	public boolean contains(String s, BST_Node root) {
