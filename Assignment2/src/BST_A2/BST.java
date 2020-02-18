@@ -1,114 +1,131 @@
 package BST_A2;
 
 public class BST implements BST_Interface {
-  public BST_Node root;
-  int size;
-  
-  public BST(){ size=0; root=null; }
-  
-  //used for testing, please leave as is
-  public BST_Node getRoot(){ return root; }
+	public BST_Node root;
+	int size;
 
-public boolean insert(String s) {
+	public BST(){ size=0; root=null; }
 
-	if (s == null) {
+	//used for testing, please leave as is
+	public BST_Node getRoot(){ return root; }
+
+	public boolean insert(String s) {
+
+		if (s == null) {
+			return false;
+		}
+
+		if (size == 0 && root == null) {
+			root = new BST_Node(s);
+			size++;
+			return true;
+		}
+
+		if (root.insertNode(s, root)) {
+			size++;
+			return true;
+		}
 		return false;
 	}
 
-	if (size == 0 && root == null) {
-		root = new BST_Node(s);
-		size++;
-		return true;
-	}
+	public boolean remove(String s) {
+		if (s == null || size == 0 || root == null) {
+			return false;
+		}
 
-	if (root.insertNode(s, root)) {
-		size++;
-		return true;
-	}
-	return false;
-}
+		if (root.data.compareTo(s) == 0) {
+			if (root.left == null && root.right == null) {
+				root = null;
+				size = 0;
+				return true;
+			}
+			
+			if (root.left != null && root.right == null) {
+				root = root.left;
+				size--;
+				return true;
+			}
+			
+			if (root.left == null && root.right != null) {
+				root = root.right;
+				size--;
+				return true;
+			}
+			
 
-public boolean remove(String s) {
-	if (s == null || size == 0 || root == null) {
+		}
+
+
+		if (root.removeNode(s, root)) {
+			size--;
+			return true;
+		}
 		return false;
 	}
 
-	if (size == 1) {
-		root = null;
-		size--;
-		return true;
+
+	public String findMin() {
+
+		if (size == 0) {
+			return null;
+		}
+
+		if (root.left == null) {
+			return root.data;
+		}
+
+		return root.left.findMin().data;
 	}
 
-	if (root.removeNode(s, root)) {
-		size--;
-		return true;
-	}
-	return false;
-}
+	public String findMax() {
 
+		if (size == 0) {
+			return null;
+		}
 
-public String findMin() {
+		if (root.right == null) {
+			return root.data;
+		}
 
-	if (size == 0) {
-		return null;
-	}
-
-	if (root.left == null) {
-		return root.data;
-	}
-	
-	return root.left.findMin().data;
-}
-
-public String findMax() {
-
-	if (size == 0) {
-		return null;
-	}
-
-	if (root.right == null) {
-		return root.data;
-	}
-	
-	return root.right.findMax().data;
-}
-
-
-public boolean empty() {
-	return (size == 0);
-}
-
-
-public boolean contains(String s) {
-
-	if (s == null) {
-		return false;
-	}
-
-	return root.contains(s, root);
-}
-
-
-public int size() {
-	return size;
-}
-
-
-public int height() {
-
-	if (size == 0 || root == null) {
-		return -1;
+		return root.right.findMax().data;
 	}
 
 
-	return root.getHeight(root);
-}
+	public boolean empty() {
+		return (size == 0);
+	}
 
-  //--------------------------------------------------
-  //
-  // of course, fill in the methods implementations
-  // for the interface
-  //
-  //--------------------------------------------------
+
+	public boolean contains(String s) {
+
+		if (s == null) {
+			return false;
+		}
+
+		return root.contains(s, root);
+	}
+
+
+	public int size() {
+		return size;
+	}
+
+
+	public int height() {
+
+		if (size == 0 || root == null) {
+			return -1;
+		}
+
+
+		return root.getHeight(root);
+	}
+
+	//--------------------------------------------------
+	//
+	// of course, fill in the methods implementations
+	// for the interface
+	//
+	//--------------------------------------------------
 
 }

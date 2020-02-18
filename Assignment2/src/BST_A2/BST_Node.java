@@ -52,30 +52,105 @@ public class BST_Node {
 			return false;
 		}
 
-		if (s.compareTo(root.data) == 0) {
-			return root.removeNode(s, this);
+		//		if (s.compareTo(root.data) == 0) {
+		//			return root.removeNode(s, this);
+		//		}
+		//
+		//		if (s.compareTo(root.data) > 0) {
+		//			return root.left.removeNode(s, this);
+		//		}
+		//
+		//		if (s.compareTo(root.data) < 0) {
+		//			return root.right.removeNode(s, this);
+		//		}
+
+		if (s == null || root == null) {
+			return false;
+		}
+		
+		//Inside Tree
+
+
+		if (root.getData().compareTo(s) == 0) {
+
+			//No Children
+
+			if (root.right == null && root.left == null) {
+				if (right == root) {
+					right = null;
+				} else {
+					left = null;
+				}
+				return true;
+			}
+
+
+			//1 Child Left
+
+			if (root.left != null && root.right == null) {
+				if (left == root) {
+					left = root.left;
+				} else {
+					right = root.left;
+				}
+				return true;
+			}
+
+
+			if (root.left == null && root.right != null) {
+
+				BST_Node replace = root.right.findMin();
+
+
+				root.data = replace.data;
+				root.removeNode(replace.data, root.right);
+				return true;
+
+
+
+			}
+
+			//2 Children left
+
+			if (root.left != null && root.right != null) {
+
+				BST_Node replace = root.right.findMin();
+
+
+				root.data = replace.data;
+				root.removeNode(replace.data, root.right);
+				return true;
+			}
+
+
 		}
 
-		if (s.compareTo(root.data) > 0) {
-			return root.left.removeNode(s, this);
+
+		if (root.getData().compareTo(s) < 0) {
+			if (root.removeNode(s, root.right)) {
+				return true;
+			}
 		}
 
-		if (s.compareTo(root.data) < 0) {
-			return root.right.removeNode(s, this);
-		}
-
-
+		if (root.getData().compareTo(s) > 0) {
+			if (root.removeNode(s, root.left)) {
+				return true;
+			}
+		} 
 
 
 		return false;
+
+
+		//return false;
 	}
 
 	public BST_Node findMin() {
-		
+
 		if (this.left == null) {
 			return this;
 		} 
-		
+
 		return this.left.findMin();
 	}
 
@@ -83,36 +158,34 @@ public class BST_Node {
 		if (this.right == null) {
 			return this;
 		} 
-		
+
 		return this.right.findMax();
 	}
 
-	public boolean contains(String s, BST_Node root) {
-		
-		if (root.data.compareTo(s) < 0) { //right
-			if (root.right == null) {
-				root.right = new BST_Node(s);
-				return true;
-			}
-			return insertNode(s, root.right);
-		} else {
+		public boolean contains(String s, BST_Node root) {
 
-
-
-			if (root.data.compareTo(s) > 0) { //left
-
-				if (root.left == null) {
-					root.left = new BST_Node(s);
-					return true;
-				}
-				return insertNode(s, root.left);
-			} 
+		if (s == null || root == null) {
+			return false;
 		}
-		
-		
-		
+			
+		if (root.data.compareTo(s) == 0) {
+			return true;
+		}
+
+
+		if (root.data.compareTo(s) < 0) { //right
+			return contains(s, root.right);
+		} 
+
+
+		if (root.data.compareTo(s) > 0) { //left
+			return contains(s, root.left);
+		}
+
+
 		return false;
 	}
+
 
 	public int getHeight(BST_Node root) {
 
