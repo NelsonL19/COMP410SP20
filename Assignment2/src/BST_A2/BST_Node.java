@@ -74,7 +74,8 @@ public class BST_Node {
 				return true;
 			}
 
-			if (root.left == null && root.right != null) {
+			if ((root.left == null && root.right != null) ||
+					(root.left != null && root.right != null)) {
 
 				BST_Node rightSide = root.right.findMin();
 				root.data = rightSide.data;
@@ -82,12 +83,12 @@ public class BST_Node {
 				
 			}
 
-			if (root.left != null && root.right != null) {
-
-				BST_Node rightSide = root.right.findMin();
-				root.data = rightSide.data;
-				return root.removeNode(rightSide.data, root.right);
-			}
+//			if (root.left != null && root.right != null) {
+//
+//				BST_Node rightSide = root.right.findMin();
+//				root.data = rightSide.data;
+//				return root.removeNode(rightSide.data, root.right);
+//			}
 
 
 		}
