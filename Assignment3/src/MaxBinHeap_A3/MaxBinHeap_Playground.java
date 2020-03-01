@@ -14,6 +14,11 @@ public class MaxBinHeap_Playground {
     mbh.insert(9);
     mbh.insert(8);
     printArray(mbh.getHeap());
+    
+    
+    System.out.println(mbh.getMax());
+    
+    
     mbh.delMax();
     printArray(mbh.getHeap());
 

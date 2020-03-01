@@ -59,29 +59,18 @@ public class MaxBinHeap implements Heap_Interface {
 	}
 
 	private void insertBubbleUp(double i) {
-
-		double tmp;
-
 		if (i != 0) {
-
-
 			if (array[(int) java.lang.Math.floor((i/2))] < array[(int) i]) {
 
-				tmp = array[(int) java.lang.Math.floor((i/2))];
-
+				double parent = array[(int) java.lang.Math.floor((i/2))];
 				array[(int) java.lang.Math.floor((i/2))] = array[(int) i];
+				array[(int) i] = parent;
 
-				array[(int) i] = tmp;
-
-				insertBubbleUp((int) java.lang.Math.floor((i/2)));
+				insertBubbleUp(java.lang.Math.floor((i/2)));
 
 			}
-
 		}
-
 	}
-
-
 
 
 	public void delMax() {
@@ -93,11 +82,36 @@ public class MaxBinHeap implements Heap_Interface {
 			return;
 		}
 
-		insertBubbleUp(size);
+		array[1] = array[size];
 		array[size] = 0.0;
+		bubbleDownNew(1);
 		size--;
+	}
 
 
+	private void bubbleDownNew(double i) {
+		double temp = 0;
+		double lChild = (i*2);
+		double rChild = ((i*2)+1);
+
+		if (i < lChild) {
+			temp = array[(int) i];
+			array[(int) i] = array[(int) lChild];
+			array[(int) lChild] = temp;
+			return;
+		}
+		
+		if (i < rChild) {
+			temp = array[(int) i];
+			array[(int) i] = array[(int) rChild];
+			array[(int) rChild] = temp;
+			return;
+		}
+		
+		bubbleDownNew(lChild);
+		bubbleDownNew(rChild);
+
+		
 	}
 
 
