@@ -1,0 +1,2 @@
+#,Time,%Passes,Change,Test,Pass,Partial,Fail,Untested
+0,Sun Mar 01 16:56:23 EST 2020,45,45,Assignment3Suite,DelMaxTest3+ GetMaxTest1+ GetMaxTest2+ InsertTest1+ InsertTest2+ InsertTest3+ SizeTest1+ SizeTest2+ SizeTest3+ SizeTest4+ , ,BuildTest1- BuildTest2- BuildTest3- DelMaxTest1- DelMaxTest2- DelMaxTest4- EverythingTest- GetMaxTest3- SortTest1- SortTest2- SortTest3- SortTest4- , ,

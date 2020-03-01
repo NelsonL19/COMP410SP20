@@ -59,7 +59,7 @@ public class MaxBinHeap implements Heap_Interface {
 	}
 
 	private void insertBubbleUp(double i) {
-		if (i != 0) {
+		if (i != 1) {
 			if (array[(int) java.lang.Math.floor((i/2))] < array[(int) i]) {
 
 				double parent = array[(int) java.lang.Math.floor((i/2))];
@@ -84,34 +84,34 @@ public class MaxBinHeap implements Heap_Interface {
 
 		array[1] = array[size];
 		array[size] = 0.0;
-		bubbleDownNew(1);
+		bubbleDownNew(array[1]);
 		size--;
 	}
 
 
 	private void bubbleDownNew(double i) {
-		double temp = 0;
-		double lChild = (i*2);
-		double rChild = ((i*2)+1);
+		double temp = 0.0;
+		double lChild = array[(int) (i*2)];
+		double rChild = array[(int) ((i*2)+1)];
 
 		if (i < lChild) {
 			temp = array[(int) i];
 			array[(int) i] = array[(int) lChild];
 			array[(int) lChild] = temp;
-			return;
-		}
-		
-		if (i < rChild) {
+			
+			
+		} else if (i < rChild) {
 			temp = array[(int) i];
 			array[(int) i] = array[(int) rChild];
 			array[(int) rChild] = temp;
-			return;
-		}
+			
+		} 
 		
 		bubbleDownNew(lChild);
 		bubbleDownNew(rChild);
-
 		
+
+
 	}
 
 
@@ -143,6 +143,12 @@ public class MaxBinHeap implements Heap_Interface {
 			clear();
 		}
 		//Code
+
+		for (int i = 0; i < elements.length; i++) {
+			array[i+1] = elements[i];
+		}
+		size = elements.length;
+		bubbleDownNew(1);
 	}
 
 	@Override
