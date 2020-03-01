@@ -29,11 +29,11 @@ public class MaxBinHeap implements Heap_Interface {
 
 		//if (size < 2) {
 
-		if (size == 0) {
-			array[1] = element;
-			size++;
-			return;
-		}
+		//		if (size == 0) {
+		//			array[1] = element;
+		//			size++;
+		//			return;
+		//		}
 
 		//Hard-Coded 0 and 1 for reminders
 		//			if (size == 1) {
@@ -51,21 +51,52 @@ public class MaxBinHeap implements Heap_Interface {
 		//			}	
 		//		}
 		//Rest of Non-Hard Coded Insert
-		
-		array[size] = element;
+
+		array[size+1] = element;
 		size++;
-		insertBubbleUp(size-1);
+		insertBubbleUp(size);
 		return;
 	}
 
-	private void insertBubbleUp(int i) {
-		// TODO Auto-generated method stub
-		
+	private void insertBubbleUp(double i) {
+
+		double tmp;
+
+		if (i != 0) {
+
+
+			if (array[(int) java.lang.Math.floor((i/2))] < array[(int) i]) {
+
+				tmp = array[(int) java.lang.Math.floor((i/2))];
+
+				array[(int) java.lang.Math.floor((i/2))] = array[(int) i];
+
+				array[(int) i] = tmp;
+
+				insertBubbleUp((int) java.lang.Math.floor((i/2)));
+
+			}
+
+		}
+
 	}
 
-	@Override
+
+
+
 	public void delMax() {
-		// TODO Auto-generated method stub
+
+
+		if (size == 1) {
+			array[1] = Double.NaN;
+			size = 0;
+			return;
+		}
+
+		insertBubbleUp(size);
+		array[size] = 0.0;
+		size--;
+
 
 	}
 

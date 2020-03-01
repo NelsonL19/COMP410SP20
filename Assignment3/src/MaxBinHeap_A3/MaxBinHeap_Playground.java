@@ -10,7 +10,13 @@ public class MaxBinHeap_Playground {
     MaxBinHeap mbh = new MaxBinHeap();
     mbh.insert(6);
     mbh.insert(5);
-    
+    mbh.insert(5.4);
+    mbh.insert(9);
+    mbh.insert(8);
+    printArray(mbh.getHeap());
+    mbh.delMax();
+    printArray(mbh.getHeap());
+
   }
 
   public static void TestBuild() {
