@@ -74,10 +74,12 @@ public class MaxBinHeap implements Heap_Interface {
 
 
 	public void delMax() {
-
+		if (size == 0) {
+			return;
+		}
 
 		if (size == 1) {
-			array[1] = Double.NaN;
+			array[1] = 0.0;
 			size = 0;
 			return;
 		}
@@ -93,6 +95,11 @@ public class MaxBinHeap implements Heap_Interface {
 
 
 	private void bubbleDownNew(int index, double val) {
+
+		if (index > size) {
+			return;
+		}
+
 		double tempVal = 0;
 		double lChildVal = array[(index*2)];
 		double rChildVal = array[((index*2)+1)];
@@ -146,6 +153,7 @@ public class MaxBinHeap implements Heap_Interface {
 	public void clear() {
 		this.array = new double[arraySize];
 		array[0] = Double.NaN;
+		size = 0;
 	}
 
 
@@ -161,11 +169,17 @@ public class MaxBinHeap implements Heap_Interface {
 		}
 		//Code
 
+		//		for (int i = 0; i < elements.length; i++) {
+		//			array[i+1] = elements[i];
+		//		}
+		//		size = elements.length;
+		//		bubbleDownNew(1, array[1]);
+
 		for (int i = 0; i < elements.length; i++) {
 			array[i+1] = elements[i];
+			size++;
 		}
-		size = elements.length;
-		bubbleDownNew(1, array[1]);
+		bubbleDownNew((int) (java.lang.Math.floor(size/2)), array[(int)(java.lang.Math.floor(size/2))]);
 	}
 
 	@Override

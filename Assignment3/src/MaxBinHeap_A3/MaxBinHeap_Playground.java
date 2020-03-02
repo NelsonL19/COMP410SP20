@@ -9,9 +9,17 @@ public class MaxBinHeap_Playground {
 
 
 		//Test1()
-		Test2();
+		//Test2();
+		Test3();
 
 
+	}
+
+	private static void Test3() {
+		MaxBinHeap mbh = new MaxBinHeap();
+		double[] arr = {1,4,2,8,5,7};
+		mbh.build(arr);
+		printArray(mbh.getHeap());  
 	}
 
 	private static void Test2() {
