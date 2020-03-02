@@ -89,29 +89,41 @@ public class MaxBinHeap implements Heap_Interface {
 	}
 
 
+
+
+
 	private void bubbleDownNew(int index, double val) {
 		double tempVal = 0;
 		double lChildVal = array[(index*2)];
 		double rChildVal = array[((index*2)+1)];
-		
+
 		if (lChildVal == 0.0 && rChildVal == 0.0) {
 			return;
 		}
 
-		if (array[index] < lChildVal) {
-			tempVal = array[index];
-			array[index] = array[index*2];
-			array[index*2] = tempVal;
+		if (val < lChildVal || val < rChildVal) {
+			if (lChildVal > rChildVal) {
+				if (array[index] < lChildVal) {
+					tempVal = array[index];
+					array[index] = array[index*2];
+					array[index*2] = tempVal;
 
-			
-			
-		} else if (array[index] < rChildVal) {
-			tempVal = array[index];
-			array[index] = array[(index*2)+1];
-			array[(index*2)+1] = tempVal;
-		} 
-		
-		
+
+
+				} else if (array[index] < rChildVal) {
+					tempVal = array[index];
+					array[index] = array[(index*2)+1];
+					array[(index*2)+1] = tempVal;
+				} 
+			} 
+
+			if (rChildVal > lChildVal) {
+				tempVal = array[index];
+				array[index] = array[(index*2)+1];
+				array[(index*2)+1] = tempVal;
+			} 
+
+		}
 		bubbleDownNew((index*2), array[(index*2)]);
 		bubbleDownNew((index*2)+1, array[(index*2)+1]);			
 
@@ -119,9 +131,6 @@ public class MaxBinHeap implements Heap_Interface {
 
 	}
 
-	public void bubbleDownImproved() {
-		
-	}
 
 	public double getMax() {
 
