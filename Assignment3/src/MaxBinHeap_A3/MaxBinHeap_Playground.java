@@ -21,11 +21,11 @@ public class MaxBinHeap_Playground {
 		mbh.insert(3);
 		mbh.insert(2);
 		mbh.insert(1);
-		//	printArray(mbh.getHeap());  
+		//printArray(mbh.getHeap());  
 		mbh.delMax();
 		printArray(mbh.getHeap());  
-		//		mbh.delMax();
-		//		printArray(mbh.getHeap());  
+		mbh.delMax();
+		printArray(mbh.getHeap());  
 
 	}
 
