@@ -27,46 +27,24 @@ public class MaxBinHeap implements Heap_Interface {
 			return;
 		}
 
-		//if (size < 2) {
-
-		//		if (size == 0) {
-		//			array[1] = element;
-		//			size++;
-		//			return;
-		//		}
-
-		//Hard-Coded 0 and 1 for reminders
-		//			if (size == 1) {
-		//				if (array[1] > element) {
-		//					array[2] = element; 
-		//					size++;
-		//					return;
-		//				} else {
-		//					double temp = array[1];
-		//					array[1] = element;
-		//					array[2] = temp;
-		//					size++;
-		//					return;
-		//				}
-		//			}	
-		//		}
-		//Rest of Non-Hard Coded Insert
-
 		array[size+1] = element;
 		size++;
 		insertBubbleUp(size);
 		return;
 	}
 
-	private void insertBubbleUp(double i) {
-		if (i != 1) {
-			if (array[(int) java.lang.Math.floor((i/2))] < array[(int) i]) {
+	private void insertBubbleUp(int index) {
 
-				double parent = array[(int) java.lang.Math.floor((i/2))];
-				array[(int) java.lang.Math.floor((i/2))] = array[(int) i];
-				array[(int) i] = parent;
+		int parentInd = (int) java.lang.Math.floor((index/2));
 
-				insertBubbleUp(java.lang.Math.floor((i/2)));
+		if (index != 1) {
+			if (array[parentInd] < array[index]) {
+
+				double parent = array[parentInd];
+				array[parentInd] = array[index];
+				array[index] = parent;
+
+				insertBubbleUp(parentInd);
 
 			}
 		}
@@ -168,24 +146,92 @@ public class MaxBinHeap implements Heap_Interface {
 			clear();
 		}
 		//Code
+		size = elements.length;
+		for (int i = 1; i <= size; i++) {
+			array[i] = elements[i-1];
+		}
+		bubbleDownBuild();
+
+		//		for (int i = 1; i <= size; i++) {
+		//
+		//			bubbleDownNew(i, array[i]);
+		//		}
 
 		//		for (int i = 0; i < elements.length; i++) {
 		//			array[i+1] = elements[i];
+		//			size++;
 		//		}
-		//		size = elements.length;
-		//		bubbleDownNew(1, array[1]);
+		//		bubbleDownNew((int) (java.lang.Math.floor(size/2)), array[(int)(java.lang.Math.floor(size/2))]);
 
-		for (int i = 0; i < elements.length; i++) {
-			array[i+1] = elements[i];
-			size++;
-		}
-		bubbleDownNew((int) (java.lang.Math.floor(size/2)), array[(int)(java.lang.Math.floor(size/2))]);
 	}
 
-	@Override
+	private void bubbleDownBuild() {
+
+		int index = parent(size);
+
+		while (index >= 1) {
+			int currentIndex = index;
+
+			while (currentIndex <= size) {
+
+				if (array[lChild(currentIndex)] > array[currentIndex] || array[rChild(currentIndex)] > array[currentIndex]) {
+
+					if(rChild(currentIndex) > size || array[lChild(currentIndex)] > array[rChild(currentIndex)]) {
+						double temp = array[currentIndex];
+						array[currentIndex] = array[lChild(currentIndex)];
+						array[lChild(currentIndex)] = temp;
+						currentIndex = lChild(currentIndex);
+
+					} else if (array[rChild(currentIndex)] > array[lChild(currentIndex)]) {
+
+						double temp = array[currentIndex];
+						array[currentIndex] = array[rChild(currentIndex)];
+						array[rChild(currentIndex)] = temp;
+						currentIndex = rChild(currentIndex);
+					}
+				} else {
+					break;
+				}
+
+			}
+			index--;
+		}
+	}
+
+
+
 	public double[] sort(double[] elements) {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (elements == null) {
+			return null;
+		}
+		clear();
+		build(elements);
+		
+		double[] sortVals = new double[elements.length];
+		
+		for (int i = 1; i <= elements.length; i++) {
+			sortVals[elements.length-i] = getMax();
+			delMax();
+		}
+
+		return sortVals;
+	}
+
+
+
+	public int parent(int i) {
+		return (int) java.lang.Math.floor((i/2));
+
+	}
+
+	public int lChild(int i) {
+		return (i*2);
+	}
+
+
+	public int rChild(int i) {
+		return ((i*2)+1);
 	}
 
 	// add your method implementations

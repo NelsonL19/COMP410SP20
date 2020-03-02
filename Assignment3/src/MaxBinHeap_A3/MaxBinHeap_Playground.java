@@ -4,15 +4,26 @@ public class MaxBinHeap_Playground {
 	public static void main(String[] args) {
 		// Add more tests as methods and call them here!!
 		//TestBuild();
-		System.out.println();
 		//TestSort();
 
 
-		//Test1()
+		//Test1();
 		//Test2();
-		Test3();
+		//Test3();
+		Test4();
 
 
+	}
+
+	private static void Test4() {
+		MaxBinHeap mbh = new MaxBinHeap();
+		double[] arr = {5,4,3,2,1};
+		arr = mbh.sort(arr);
+		
+		for (int i = 0; i < arr.length; i++) {
+			System.out.println(arr[i]);
+		}
+		
 	}
 
 	private static void Test3() {
@@ -37,21 +48,21 @@ public class MaxBinHeap_Playground {
 
 	}
 
-	void Test1(){
+	public static void Test1(){
 		MaxBinHeap mbh = new MaxBinHeap();
-		mbh.insert(6);
+		mbh.insert(1);
+		mbh.insert(2);
+		mbh.insert(3);
+		mbh.insert(4);
 		mbh.insert(5);
-		mbh.insert(5.4);
-		mbh.insert(9);
-		mbh.insert(8);
 		printArray(mbh.getHeap());
 
 
 		System.out.println(mbh.getMax());
 
 
-		mbh.delMax();
-		printArray(mbh.getHeap());  
+		//		mbh.delMax();
+		//		printArray(mbh.getHeap());  
 	}
 
 	public static void TestBuild() {
