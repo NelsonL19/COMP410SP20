@@ -64,7 +64,7 @@ public class MaxBinHeap implements Heap_Interface {
 
 		array[1] = array[size];
 		array[size] = 0.0;
-		bubbleDownNew(1, array[1]);
+		bubbleDown(1, array[1]);
 		size--;
 	}
 
@@ -72,7 +72,7 @@ public class MaxBinHeap implements Heap_Interface {
 
 
 
-	private void bubbleDownNew(int index, double val) {
+	private void bubbleDown(int index, double val) {
 
 		if (index > size) {
 			return;
@@ -109,8 +109,8 @@ public class MaxBinHeap implements Heap_Interface {
 			} 
 
 		}
-		bubbleDownNew((index*2), array[(index*2)]);
-		bubbleDownNew((index*2)+1, array[(index*2)+1]);			
+		bubbleDown((index*2), array[(index*2)]);
+		bubbleDown((index*2)+1, array[(index*2)+1]);			
 
 
 
@@ -151,18 +151,6 @@ public class MaxBinHeap implements Heap_Interface {
 			array[i] = elements[i-1];
 		}
 		bubbleDownBuild();
-
-		//		for (int i = 1; i <= size; i++) {
-		//
-		//			bubbleDownNew(i, array[i]);
-		//		}
-
-		//		for (int i = 0; i < elements.length; i++) {
-		//			array[i+1] = elements[i];
-		//			size++;
-		//		}
-		//		bubbleDownNew((int) (java.lang.Math.floor(size/2)), array[(int)(java.lang.Math.floor(size/2))]);
-
 	}
 
 	private void bubbleDownBuild() {
@@ -207,9 +195,9 @@ public class MaxBinHeap implements Heap_Interface {
 		}
 		clear();
 		build(elements);
-		
+
 		double[] sortVals = new double[elements.length];
-		
+
 		for (int i = 1; i <= elements.length; i++) {
 			sortVals[elements.length-i] = getMax();
 			delMax();
