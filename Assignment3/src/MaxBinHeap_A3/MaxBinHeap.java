@@ -35,7 +35,7 @@ public class MaxBinHeap implements Heap_Interface {
 
 	private void insertBubbleUp(int index) {
 
-		int parentInd = (int) java.lang.Math.floor((index/2));
+		int parentInd = parent(index);
 
 		if (index != 1) {
 			if (array[parentInd] < array[index]) {
@@ -79,8 +79,8 @@ public class MaxBinHeap implements Heap_Interface {
 		}
 
 		double tempVal = 0;
-		double lChildVal = array[(index*2)];
-		double rChildVal = array[((index*2)+1)];
+		double lChildVal = array[lChild(index)];
+		double rChildVal = array[rChild(index)];
 
 		if (lChildVal == 0.0 && rChildVal == 0.0) {
 			return;
@@ -90,27 +90,27 @@ public class MaxBinHeap implements Heap_Interface {
 			if (lChildVal > rChildVal) {
 				if (array[index] < lChildVal) {
 					tempVal = array[index];
-					array[index] = array[index*2];
-					array[index*2] = tempVal;
+					array[index] = array[lChild(index)];
+					array[lChild(index)] = tempVal;
 
 
 
 				} else if (array[index] < rChildVal) {
 					tempVal = array[index];
-					array[index] = array[(index*2)+1];
-					array[(index*2)+1] = tempVal;
+					array[index] = array[rChild(index)];
+					array[rChild(index)] = tempVal;
 				} 
 			} 
 
 			if (rChildVal > lChildVal) {
 				tempVal = array[index];
-				array[index] = array[(index*2)+1];
-				array[(index*2)+1] = tempVal;
+				array[index] = array[rChild(index)];
+				array[rChild(index)] = tempVal;
 			} 
 
 		}
-		bubbleDown((index*2), array[(index*2)]);
-		bubbleDown((index*2)+1, array[(index*2)+1]);			
+		bubbleDown(lChild(index), array[lChild(index)]);
+		bubbleDown(rChild(index), array[rChild(index)]);			
 
 
 
