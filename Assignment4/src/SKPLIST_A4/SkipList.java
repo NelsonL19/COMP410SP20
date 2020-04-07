@@ -134,15 +134,67 @@ public class SkipList implements SkipList_Interface {
 		return true;
 	}
 
-	
+
 	public boolean remove(double value) {
 		if (!contains(value) || size == 0) {
 			return false;
 		}
-		
+
+		//		int currHeight = MaxHeight-1;
+		//		SkipList_Node toRemove = root;
+		//		
+		//		while (currHeight > -1) {
+		//			SkipList_Node curr = root;
+		//			for (int i = 0; i <= size; i++) {
+		//				if (curr.getValue() == value ) {
+		//					toRemove = curr;
+		//				}
+		//				
+		//				if (curr.getNext(currHeight) == null || 
+		//						curr.getNext(currHeight).getValue() > value) {
+		//					break;
+		//				}
+		//				
+		//				curr = curr.getNext(currHeight);
+		//			}
+		//			currHeight--;
+		//		}
+
+
+
+
 		size--;
-		return false;
+		return removeRecursive(value, MaxHeight-1);
 	}
+
+	public boolean removeRecursive(double value, int currHeight) {
+		//Move down a layer
+		if (currHeight != 0 && root.getNext(currHeight) == null) {
+			return removeRecursive(value, currHeight-1);
+		}
+
+		SkipList_Node toRemove = root;
+
+		while (toRemove.getNext(currHeight) != null) {
+			if (toRemove.getNext(currHeight).getValue() == value) {
+				SkipList_Node next = toRemove.getNext(currHeight).getNext(currHeight);
+				toRemove.setNext(currHeight, next);
+				if (currHeight == 0) {
+					return true;
+				}
+				return removeRecursive(value, currHeight-1);
+			}
+			
+			//moving down a layer
+			toRemove = toRemove.getNext(currHeight);
+			if (toRemove.getNext(currHeight) == null && currHeight != 0) {
+				removeRecursive(value, currHeight-1);
+			}
+		}
+
+		return true;
+	}
+
 
 	public boolean contains(double value) {
 
@@ -150,7 +202,7 @@ public class SkipList implements SkipList_Interface {
 			return false;
 		}
 
-//Start at the highest height, going all the way down
+		//Start at the highest height, going all the way down
 		int currHeight = MaxHeight-1;
 		while (currHeight > -1) {
 			SkipList_Node curr = root;
@@ -158,41 +210,41 @@ public class SkipList implements SkipList_Interface {
 				if (curr.getValue() == value ) {
 					return true;
 				}
-				
+
 				if (curr.getNext(currHeight) == null || 
 						curr.getNext(currHeight).getValue() > value) {
 					break;
 				}
-				
+
 				curr = curr.getNext(currHeight);
 			}
 			currHeight--;
 		}
 
-//Level 0, all the way at the bottom (N time complex)
+		//Level 0, all the way at the bottom (N time complex)
 
-//		SkipList_Node curr = root;
-//		for (int i = 0; i <= size; i++) {
-//			if (curr.getValue() == value ) {
-//				return true;
-//			}
-//			if (curr.getNext(0) == null) {
-//				break;
-//			}
-//			curr = curr.getNext(0);
-//		}
+		//		SkipList_Node curr = root;
+		//		for (int i = 0; i <= size; i++) {
+		//			if (curr.getValue() == value ) {
+		//				return true;
+		//			}
+		//			if (curr.getNext(0) == null) {
+		//				break;
+		//			}
+		//			curr = curr.getNext(0);
+		//		}
 
 		return false;
 	}
 
-	
+
 	public double findMin() {
 		return root.getNext(0).getValue();
 	}
 
-	
+
 	public double findMax() {
-		
+
 		SkipList_Node curr = root;
 		for (int i = 0; i <= size; i++) {
 			if (curr.getNext(0) == null) {
@@ -200,7 +252,7 @@ public class SkipList implements SkipList_Interface {
 			}
 			curr = curr.getNext(0);
 		}
-		
+
 		return curr.getValue();
 	}
 
@@ -220,22 +272,22 @@ public class SkipList implements SkipList_Interface {
 		return size;
 	}
 
-	
+
 	public int level() {
-		
+
 		if (size == 0) {
 			return -1;
 		}
-		
+
 		int currHeight = MaxHeight-1;
-			for (int i = 0; i < MaxHeight; i++) {
-				if (root.getNext(i) == null) {
-					currHeight--;
-				}	
-			}
-			
-		
-		
+		for (int i = 0; i < MaxHeight; i++) {
+			if (root.getNext(i) == null) {
+				currHeight--;
+			}	
+		}
+
+
+
 		return currHeight;
 	}
 

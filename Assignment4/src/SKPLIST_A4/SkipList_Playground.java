@@ -59,6 +59,11 @@ public class SkipList_Playground {
 
 		System.out.println("=== Level ===");
 		System.out.println(list.level());
+		
+		System.out.println(list);
+	    System.out.println("=== REMOVE ===");
+	    list.remove(2.0);
+	    System.out.println(list);
 		//    System.out.println("=== REMOVE ===");
 		//    for(double i = -5; i < 15; i +=2) {
 		////      System.out.println(i + ": " + list.remove(i));
