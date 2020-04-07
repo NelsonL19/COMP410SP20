@@ -139,61 +139,60 @@ public class SkipList implements SkipList_Interface {
 		if (!contains(value) || size == 0) {
 			return false;
 		}
+		
+		int currHeight = MaxHeight-1;
+	
 
-		//		int currHeight = MaxHeight-1;
-		//		SkipList_Node toRemove = root;
-		//		
-		//		while (currHeight > -1) {
-		//			SkipList_Node curr = root;
-		//			for (int i = 0; i <= size; i++) {
-		//				if (curr.getValue() == value ) {
-		//					toRemove = curr;
-		//				}
-		//				
-		//				if (curr.getNext(currHeight) == null || 
-		//						curr.getNext(currHeight).getValue() > value) {
-		//					break;
-		//				}
-		//				
-		//				curr = curr.getNext(currHeight);
-		//			}
-		//			currHeight--;
-		//		}
+		while (currHeight > -1) {
+			SkipList_Node curr = root;
+			for (int i = 0; i <= size; i++) {
+				if (curr.getNext(currHeight) != null &&
+						curr.getNext(currHeight).getValue() == value ) {
+					curr.setNext(currHeight, curr.getNext(currHeight).getNext(currHeight));
+				}
 
+				
+				if (curr.getNext(currHeight) == null || 
+						curr.getNext(currHeight).getValue() > value) {
+					break;
+				}
 
-
+				curr = curr.getNext(currHeight);
+			}
+			currHeight--;
+		}
 
 		size--;
-		return removeRecursive(value, MaxHeight-1);
-	}
-
-	public boolean removeRecursive(double value, int currHeight) {
-		//Move down a layer
-		if (currHeight != 0 && root.getNext(currHeight) == null) {
-			return removeRecursive(value, currHeight-1);
-		}
-
-		SkipList_Node toRemove = root;
-
-		while (toRemove.getNext(currHeight) != null) {
-			if (toRemove.getNext(currHeight).getValue() == value) {
-				SkipList_Node next = toRemove.getNext(currHeight).getNext(currHeight);
-				toRemove.setNext(currHeight, next);
-				if (currHeight == 0) {
-					return true;
-				}
-				return removeRecursive(value, currHeight-1);
-			}
-			
-			//moving down a layer
-			toRemove = toRemove.getNext(currHeight);
-			if (toRemove.getNext(currHeight) == null && currHeight != 0) {
-				removeRecursive(value, currHeight-1);
-			}
-		}
-
 		return true;
 	}
+
+//	public boolean removeRecursive(double value, int currHeight) {
+//		//Move down a layer
+//		if (currHeight != 0 && root.getNext(currHeight) == null) {
+//			return removeRecursive(value, currHeight-1);
+//		}
+//
+//		SkipList_Node toRemove = root;
+//
+//		while (toRemove.getNext(currHeight) != null) {
+//			if (toRemove.getNext(currHeight).getValue() == value) {
+//				SkipList_Node next = toRemove.getNext(currHeight).getNext(currHeight);
+//				toRemove.setNext(currHeight, next);
+//				if (currHeight == 0) {
+//					return true;
+//				}
+//				return removeRecursive(value, currHeight-1);
+//			}
+//
+//			//moving down a layer
+//			toRemove = toRemove.getNext(currHeight);
+//			if (toRemove.getNext(currHeight) == null && currHeight != 0) {
+//				removeRecursive(value, currHeight-1);
+//			}
+//		}
+//
+//		return true;
+//	}
 
 
 	public boolean contains(double value) {
