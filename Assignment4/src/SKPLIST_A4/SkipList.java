@@ -166,34 +166,6 @@ public class SkipList implements SkipList_Interface {
 		return true;
 	}
 
-//	public boolean removeRecursive(double value, int currHeight) {
-//		//Move down a layer
-//		if (currHeight != 0 && root.getNext(currHeight) == null) {
-//			return removeRecursive(value, currHeight-1);
-//		}
-//
-//		SkipList_Node toRemove = root;
-//
-//		while (toRemove.getNext(currHeight) != null) {
-//			if (toRemove.getNext(currHeight).getValue() == value) {
-//				SkipList_Node next = toRemove.getNext(currHeight).getNext(currHeight);
-//				toRemove.setNext(currHeight, next);
-//				if (currHeight == 0) {
-//					return true;
-//				}
-//				return removeRecursive(value, currHeight-1);
-//			}
-//
-//			//moving down a layer
-//			toRemove = toRemove.getNext(currHeight);
-//			if (toRemove.getNext(currHeight) == null && currHeight != 0) {
-//				removeRecursive(value, currHeight-1);
-//			}
-//		}
-//
-//		return true;
-//	}
-
 
 	public boolean contains(double value) {
 
