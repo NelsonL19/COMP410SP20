@@ -96,17 +96,6 @@ public class SkipList implements SkipList_Interface {
 
 		SkipList_Node toAdd = new SkipList_Node(value, insertHeight);
 
-
-		//Base Case
-		//		if (size == 0) {
-		//			for (int i = 0; i < insertHeight; i++) {
-		//				root.setNext(i, toAdd);
-		//			}
-		//			size++;
-		//			return true;
-		//		}
-
-
 		for (int i = insertHeight-1; i > -1; i--) {
 
 			if (root.getNext(i) == null) {
