@@ -2,7 +2,8 @@ package SKPLIST_A4;
 
 public class SkipList_Node {
   private double value;
-  private int level;
+  @SuppressWarnings("unused")
+private int level;
   private SkipList_Node[] next;
   
   public SkipList_Node(double value, int height) {
