@@ -170,11 +170,9 @@ public class DiGraph implements DiGraphInterface {
 		return nodeAmt;
 	}
 
-
 	public long numEdges() {
 		return edgeAmt;
 	}
-
 
 	public ShortestPathInfo[] shortestPath(String label) {
 	
@@ -182,14 +180,13 @@ public class DiGraph implements DiGraphInterface {
 			v.known = false;
 			v.distance = Long.MAX_VALUE;
 		});
-
-		
+	
 		MinBinHeap pq = new MinBinHeap();
 
-		Node vertStart = nodes.get(label);
-		vertStart.distance = 0;
+		Node start = nodes.get(label);
+		start.distance = 0;
 
-		pq.insert(new EntryPair(label, (int) vertStart.distance));
+		pq.insert(new EntryPair(label, (int) start.distance));
 
 		while (pq.size() > 0) {
 			Node n = nodes.get(pq.getMin().value);
@@ -213,18 +210,12 @@ public class DiGraph implements DiGraphInterface {
 			}
 
 		}
-
-		Iterator<Entry<String, Node>> vertices = nodes.entrySet().iterator();
-
-		while (vertices.hasNext()) {
-
-			Node currNode = vertices.next().getValue();
-
-			if (!currNode.known) {
-				currNode.distance = -1;
+		
+		nodes.forEach((k,v) -> {  
+			if (!v.known) {
+				v.distance = -1;
 			}
-
-		}
+		});
 
 		ShortestPathInfo[] shortestPath = new ShortestPathInfo[nodeAmt];
 
@@ -237,8 +228,5 @@ public class DiGraph implements DiGraphInterface {
 
 		return shortestPath;
 	}
-
-
-
 
 }

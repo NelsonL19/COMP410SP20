@@ -13,15 +13,15 @@ public class DiGraphPlayground {
 		//    -- etc.
 		// in order to convince yourself your code is producing
 		// the correct behavior
-		exTest();
-		rmTest();
-		spTest0();
-		spTest1();
-		spTest2();
-		spTest3();
-		spTest4();
-		spTest5();
-		efficiencyTest();
+//		exTest();
+//		rmTest();
+//		spTest0();
+//		spTest1();
+//		spTest2();
+//		spTest3();
+//		spTest4();
+//		spTest5();
+//		efficiencyTest();
 	}
 
 
