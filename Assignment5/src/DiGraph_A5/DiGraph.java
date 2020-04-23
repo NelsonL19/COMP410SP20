@@ -11,7 +11,6 @@ public class DiGraph implements DiGraphInterface {
 	HashSet<Long> edges = new HashSet<Long>();
 	int nodeAmt = 0;
 	int edgeAmt = 0;
-	int currNode = 1;
 
 
 
@@ -99,22 +98,24 @@ public class DiGraph implements DiGraphInterface {
 		if (nodeAmt == 0) {
 			return false;
 		}
+		
 
-		Iterator<Entry<String, Edge>> edgeOut = nodes.get(label).inEdge.entrySet().iterator();
-		while (edgeOut.hasNext()) {
-			Edge edgesTR = (Edge) edgeOut.next();
-			edges.remove(edgesTR.idNum);
-			nodes.get(label).outEdge.remove(edgesTR.source.label);
-
-		}
-
-		Iterator<Entry<String,Edge>> edgeIn = nodes.get(label).outEdge.entrySet().iterator();
-		while (edgeIn.hasNext()) {
-			Edge edgesTR = (Edge) edgeIn.next();
+			
+		nodes.get(label).outEdge.forEach((k,v) -> {  
+			Edge edgesTR = v;
 			edges.remove(edgesTR.idNum);
 			nodes.get(label).inEdge.remove(edgesTR.source.label);
 
-		}
+		});
+		
+	
+		
+		nodes.get(label).inEdge.forEach((k,v) -> {  
+			Edge edgesTR = v;
+			edges.remove(edgesTR.idNum);
+			nodes.get(label).outEdge.remove(edgesTR.source.label);
+		});
+		
 
 
 		if (nodes.containsKey(label)) {
@@ -176,35 +177,68 @@ public class DiGraph implements DiGraphInterface {
 
 
 	public ShortestPathInfo[] shortestPath(String label) {
+	
 		nodes.forEach((k,v) -> {  
 			v.known = false;
 			v.distance = Long.MAX_VALUE;
 		});
 
-		ShortestPathInfo[] shortestPath = new ShortestPathInfo[nodeAmt];
-		PriorityQueue<Node> pq = new PriorityQueue<Node>(); 
+		
+		MinBinHeap pq = new MinBinHeap();
 
-		nodes.get(label).distance = 0;
-		shortestPath[0] = new ShortestPathInfo(label, nodes.get(label).distance);
-		
-		
-		pq.add(new Node(nodes.get(label).distance, label));
-		while (!pq.isEmpty()) {
-			Node n = pq.peek();
+		Node vertStart = nodes.get(label);
+		vertStart.distance = 0;
+
+		pq.insert(new EntryPair(label, (int) vertStart.distance));
+
+		while (pq.size() > 0) {
+			Node n = nodes.get(pq.getMin().value);
 			long d = n.distance;
-			pq.remove();
 
+			pq.delMin();
+			n.known = true;
 
-			if (!n.known) {
-				n.known = true;
+			Iterator<Entry<String, Edge>> outEdge = n.outEdge.entrySet().iterator();
 
+			while (outEdge.hasNext()) {
+				Edge currEdge = outEdge.next().getValue();
+				Node currNode = nodes.get(currEdge.destination.label);
+				if (!currNode.known) {
+					long path = d + currEdge.weight;
+					if (path < currNode.distance) {
+						currNode.distance = n.distance + currEdge.weight;
+						pq.insert(new EntryPair(currNode.label, (int) currNode.distance));
+					}
+				}
 			}
 
 		}
 
+		Iterator<Entry<String, Node>> vertices = nodes.entrySet().iterator();
 
+		while (vertices.hasNext()) {
+
+			Node currNode = vertices.next().getValue();
+
+			if (!currNode.known) {
+				currNode.distance = -1;
+			}
+
+		}
+
+		ShortestPathInfo[] shortestPath = new ShortestPathInfo[nodeAmt];
+
+		Iterator<Entry<String, Node>> verticesValues = nodes.entrySet().iterator();
+
+		for (int i = 0; verticesValues.hasNext(); i++) {
+			Node vertVals = verticesValues.next().getValue();
+			shortestPath[i] = new ShortestPathInfo(vertVals.label, vertVals.distance);
+		}
 
 		return shortestPath;
 	}
+
+
+
 
 }
